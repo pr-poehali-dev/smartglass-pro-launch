@@ -72,7 +72,7 @@ const Index = () => {
     {
       title: 'Бизнес-центр "Технопарк"',
       location: 'Москва',
-      image: '🏢',
+      image: 'https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9d56cc08-0ec8-4a92-bf7e-a4576545ddf7.jpg',
       results: [
         { label: 'Экономия на мойке', value: '68%' },
         { label: 'Снижение затрат на климат', value: '24%' },
@@ -83,7 +83,7 @@ const Index = () => {
     {
       title: 'Жилой комплекс "Горизонт"',
       location: 'Санкт-Петербург',
-      image: '🏗️',
+      image: 'https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9781f769-0f73-4b81-8426-37c4198f437d.jpg',
       results: [
         { label: 'Премия к цене квартир', value: '+12%' },
         { label: 'Экономия жильцов', value: '₽15к/год' },
@@ -94,7 +94,7 @@ const Index = () => {
     {
       title: 'Отель "Премиум Резиденс"',
       location: 'Сочи',
-      image: '🏨',
+      image: 'https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9cc4f55c-570c-4b4f-8771-cb6ef6615b15.jpg',
       results: [
         { label: 'Рейтинг гостей', value: '9.4/10' },
         { label: 'Экономия электроэнергии', value: '28%' },
@@ -138,8 +138,15 @@ const Index = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 pointer-events-none" />
       
       <div className="relative z-10">
-        <section className="min-h-screen flex items-center justify-center px-4 py-20">
-          <div className="max-w-6xl mx-auto text-center">
+        <section className="min-h-screen flex items-center justify-center px-4 py-20 relative">
+          <div className="absolute inset-0 opacity-20">
+            <img 
+              src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9d56cc08-0ec8-4a92-bf7e-a4576545ddf7.jpg" 
+              alt="Smart Glass Building" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="max-w-6xl mx-auto text-center relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-8 animate-fade-in">
               <Icon name="Zap" size={16} className="text-primary animate-glow" />
               <span className="text-sm font-medium">Инновационные технологии для современных зданий</span>
@@ -182,8 +189,15 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-20 px-4 bg-card/30">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-4 bg-card/30 relative overflow-hidden">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-96 opacity-10">
+            <img 
+              src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9cc4f55c-570c-4b4f-8771-cb6ef6615b15.jpg" 
+              alt="Smart Glass Technology" 
+              className="w-full h-full object-cover rounded-l-3xl"
+            />
+          </div>
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Преимущества SmartGlass PRO</h2>
               <p className="text-xl text-muted-foreground">Технологии, которые повышают ценность здания и снижают расходы</p>
@@ -261,7 +275,13 @@ const Index = () => {
                   <CardContent className="p-8">
                     <div className="grid md:grid-cols-2 gap-8">
                       <div>
-                        <div className="text-6xl mb-4">{caseItem.image}</div>
+                        <div className="mb-6 rounded-xl overflow-hidden">
+                          <img 
+                            src={caseItem.image} 
+                            alt={caseItem.title}
+                            className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
                         <h3 className="text-2xl font-bold mb-2">{caseItem.title}</h3>
                         <div className="flex items-center gap-2 text-muted-foreground mb-6">
                           <Icon name="MapPin" size={16} />
