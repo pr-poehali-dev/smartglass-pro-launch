@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -7,6 +7,8 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [email, setEmail] = useState('');
+  const [isTransparent, setIsTransparent] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const benefits = [
     {
@@ -166,7 +168,14 @@ const Index = () => {
                 Получить расчёт сметы
                 <Icon name="ArrowRight" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 glass-effect hover-scale">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8 py-6 glass-effect hover-scale"
+                onClick={() => {
+                  document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Смотреть демо
                 <Icon name="Play" size={20} className="ml-2" />
               </Button>
@@ -189,6 +198,136 @@ const Index = () => {
           </div>
         </section>
 
+        <section id="demo-video" className="py-20 px-4 bg-card/50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Видео-демонстрация</h2>
+              <p className="text-xl text-muted-foreground">Управление прозрачностью в реальном времени</p>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="glass-effect p-8 rounded-3xl">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl overflow-hidden relative group mb-6">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform cursor-pointer">
+                        <Icon name="Play" size={40} className="text-primary ml-1" />
+                      </div>
+                      <p className="text-lg font-medium">Нажмите, чтобы увидеть SmartGlass в действии</p>
+                    </div>
+                  </div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9781f769-0f73-4b81-8426-37c4198f437d.jpg"
+                    alt="Smart Glass Demo"
+                    className="w-full h-full object-cover opacity-40"
+                  />
+                </div>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 glass-effect rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Info" size={20} className="text-primary" />
+                    <span className="text-sm text-muted-foreground">Интерактивная демонстрация технологии</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" className="glass-effect">
+                      <Icon name="Download" size={16} className="mr-2" />
+                      Скачать презентацию
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 px-4 bg-card/30">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">До и После</h2>
+              <p className="text-xl text-muted-foreground">Результаты использования SmartGlass PRO</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="glass-effect rounded-2xl overflow-hidden group cursor-pointer">
+                <div className="relative h-96">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/d96d4848-d245-4aec-a160-8d2f0b7dad6a.jpg"
+                    alt="До установки SmartGlass"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 px-4 py-2 bg-destructive/90 backdrop-blur-sm rounded-full font-semibold text-sm">
+                    До
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <h3 className="text-xl font-bold mb-2">Обычное стекло</h3>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <Icon name="X" size={16} className="text-destructive" />
+                        Частая мойка фасадов
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="X" size={16} className="text-destructive" />
+                        Перегрев помещений
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="X" size={16} className="text-destructive" />
+                        Высокие расходы на обслуживание
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="glass-effect rounded-2xl overflow-hidden group cursor-pointer">
+                <div className="relative h-96">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/07c0a031-fe18-4c7c-b5b1-a4e99da7792c.jpg"
+                    alt="После установки SmartGlass"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 px-4 py-2 bg-primary/90 backdrop-blur-sm rounded-full font-semibold text-sm">
+                    После
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <h3 className="text-xl font-bold mb-2">SmartGlass PRO</h3>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={16} className="text-primary" />
+                        Самоочистка стекла
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={16} className="text-primary" />
+                        Контроль температуры
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={16} className="text-primary" />
+                        Экономия до 70%
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="glass-effect p-8 rounded-2xl text-center">
+              <div className="grid md:grid-cols-3 gap-8">
+                <div>
+                  <div className="text-4xl font-bold text-gradient mb-2">-70%</div>
+                  <div className="text-muted-foreground">расходов на мойку</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-gradient mb-2">-30%</div>
+                  <div className="text-muted-foreground">затрат на климат</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-gradient mb-2">+15%</div>
+                  <div className="text-muted-foreground">стоимость объекта</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 px-4 bg-card/30 relative overflow-hidden">
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-96 opacity-10">
             <img 
@@ -201,6 +340,21 @@ const Index = () => {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Преимущества SmartGlass PRO</h2>
               <p className="text-xl text-muted-foreground">Технологии, которые повышают ценность здания и снижают расходы</p>
+            </div>
+            
+            <div className="mb-12 glass-effect p-8 rounded-2xl">
+              <div className="relative aspect-video rounded-xl overflow-hidden mb-6">
+                <img 
+                  src="https://cdn.poehali.dev/projects/d4dbc372-f227-412d-85ec-1008ff785684/files/9d56cc08-0ec8-4a92-bf7e-a4576545ddf7.jpg"
+                  alt="SmartGlass Building"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-2xl font-bold mb-2">Премиальная технология для современных зданий</h3>
+                  <p className="text-muted-foreground">Установлено в 50+ объектах по всей России</p>
+                </div>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
